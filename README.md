@@ -1,2 +1,2 @@
 # ClaimsProject
-Minecraft Claims Plugin Projec
+Minecraft Claims Plugin Project
