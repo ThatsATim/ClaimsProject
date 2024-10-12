@@ -1,0 +1,7 @@
+name: ClaimsProject
+version: '0.1-DEV'
+main: me.thatsatim.ClaimsProject.ClaimsProject
+api-version: '1.21'
+commands:
+  test:
+    description: my command :p
