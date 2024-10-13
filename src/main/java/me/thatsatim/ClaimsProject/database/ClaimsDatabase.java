@@ -28,7 +28,7 @@ public class ClaimsDatabase {
         UUID uuid = player.getUniqueId();
         String chunkID = (chunk.getX()) + "," + (chunk.getZ());
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO claims (uuid, chunk) VALUES (?, ?)"
+                "INSERT INTO claims (chunk, uuid) VALUES (?, ?)"
         )) {
             preparedStatement.setString(1, chunkID);
             preparedStatement.setString(2, uuid.toString());
