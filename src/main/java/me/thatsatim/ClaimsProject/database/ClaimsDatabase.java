@@ -18,8 +18,8 @@ public class ClaimsDatabase {
         try (Statement statement = connection.createStatement()) {
             statement.execute("""
                         CREATE TABLE IF NOT EXISTS claims (
-                        uuid TEXT PRIMARY KEY,
-                        chunk TEXT);
+                        chunkID TEXT PRIMARY KEY,
+                        owner TEXT);
                     """);
         }
     }
@@ -30,8 +30,8 @@ public class ClaimsDatabase {
         try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO claims (uuid, chunk) VALUES (?, ?)"
         )) {
-            preparedStatement.setString(1, uuid.toString());
-            preparedStatement.setString(2, chunkID);
+            preparedStatement.setString(1, chunkID);
+            preparedStatement.setString(2, uuid.toString());
             preparedStatement.executeUpdate();
         }
     }
