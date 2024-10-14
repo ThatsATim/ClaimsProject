@@ -1,5 +1,7 @@
 package me.thatsatim.ClaimsProject;
 
+import me.thatsatim.ClaimsProject.commands.ClaimChunkCommand;
+import me.thatsatim.ClaimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.ClaimsProject.database.ClaimsDatabase;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,7 +12,8 @@ public final class ClaimsProject extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        new Test(this);
+        new ClaimChunkCommand(this);
+        new UnclaimChunkCommand(this);
 
         // Create the database connection
         try {

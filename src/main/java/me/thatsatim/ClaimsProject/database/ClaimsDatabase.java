@@ -5,6 +5,7 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ClaimsDatabase {
@@ -24,9 +25,15 @@ public class ClaimsDatabase {
         }
     }
 
-    public static void claimChunk(Player player, Chunk chunk) throws SQLException {
+    public static boolean claimChunk(Player player, Chunk chunk) throws SQLException {
         UUID uuid = player.getUniqueId();
         String chunkID = (chunk.getX()) + "," + (chunk.getZ());
+        String[] chunkData = getChunk(chunkID);
+
+        if (!(chunkData[0] == null)) {
+            return false;
+        }
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO claims (chunkID, owner) VALUES (?, ?)"
         )) {
@@ -34,5 +41,31 @@ public class ClaimsDatabase {
             preparedStatement.setString(2, uuid.toString());
             preparedStatement.executeUpdate();
         }
+        return true;
     }
+
+    public static boolean unClaimChunk(Player player, Chunk chunk) throws SQLException {
+        UUID uuid = player.getUniqueId();
+        String chunkID = (chunk.getX()) + "," + (chunk.getZ());
+        String[] chunkData = getChunk(chunkID);
+
+        if (!(Objects.equals(chunkData[1], uuid.toString()))) {
+            return false;
+        }
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM claims WHERE chunkID = ?")) {
+            preparedStatement.setString(1, chunkID);
+            preparedStatement.executeUpdate();
+        }
+        return true;
+    }
+
+    private static String[] getChunk(String chunkID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM claims WHERE chunkID = ?")) {
+            preparedStatement.setString(1, chunkID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return new String[]{resultSet.getString("chunkID"), resultSet.getString("owner")};
+        }
+    }
+
 }
