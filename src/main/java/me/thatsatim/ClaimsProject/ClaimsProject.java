@@ -3,6 +3,7 @@ package me.thatsatim.ClaimsProject;
 import me.thatsatim.ClaimsProject.commands.ClaimChunkCommand;
 import me.thatsatim.ClaimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.ClaimsProject.database.ClaimsDatabase;
+import me.thatsatim.ClaimsProject.listeners.Block;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,7 @@ public final class ClaimsProject extends JavaPlugin {
     public void onEnable() {
         new ClaimChunkCommand(this);
         new UnclaimChunkCommand(this);
+        new Block(this);
 
         // Create the database connection
         try {
