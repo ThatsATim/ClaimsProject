@@ -80,8 +80,7 @@ public class ClaimsDatabase {
         String chunkID = (chunk.getX()) + "," + (chunk.getZ());
         String[] chunkData = getChunk(chunkID);
 
-        if (!Objects.equals(chunkData[1], uuid.toString())) { return false; }
-        return true;
+        return Objects.equals(chunkData[1], uuid.toString());
     }
 
     public static boolean permissionInChunk(Player player, Chunk chunk) throws SQLException {
@@ -90,8 +89,7 @@ public class ClaimsDatabase {
         String[] chunkData = getChunk(chunkID);
 
         if (chunkData[0] == null) { return true; }
-        if (!Objects.equals(chunkData[1], uuid.toString())) { return false; }
-        return true;
+        return Objects.equals(chunkData[1], uuid.toString());
     }
 
     private static String[] getChunk(String chunkID) throws SQLException {
