@@ -7,3 +7,5 @@ commands:
     description: claim a chunk
   unclaim:
     description: unclaim a chunk
+  transfer:
+    description: transfer a claimed chunk

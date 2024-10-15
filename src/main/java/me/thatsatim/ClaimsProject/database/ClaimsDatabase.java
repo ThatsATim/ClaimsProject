@@ -40,8 +40,8 @@ public class ClaimsDatabase {
             preparedStatement.setString(1, chunkID);
             preparedStatement.setString(2, uuid.toString());
             preparedStatement.executeUpdate();
+            return true;
         }
-        return true;
     }
 
     public static boolean unClaimChunk(Player player, Chunk chunk) throws SQLException {
@@ -56,7 +56,31 @@ public class ClaimsDatabase {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM claims WHERE chunkID = ?")) {
             preparedStatement.setString(1, chunkID);
             preparedStatement.executeUpdate();
+            return true;
         }
+
+    }
+
+    public static boolean transferChunk(Player owner, Player newOwner, Chunk chunk) throws SQLException {
+
+        if (!ownsChunk(owner, chunk)) { return false; }
+
+        String chunkID = (chunk.getX()) + "," + (chunk.getZ());
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE claims SET owner = ? WHERE chunkID = ?")) {
+            preparedStatement.setString(1, newOwner.getUniqueId().toString());
+            preparedStatement.setString(2, chunkID);
+            preparedStatement.executeUpdate();
+            return true;
+        }
+    }
+
+    public static boolean ownsChunk(Player player, Chunk chunk) throws SQLException {
+        UUID uuid = player.getUniqueId();
+        String chunkID = (chunk.getX()) + "," + (chunk.getZ());
+        String[] chunkData = getChunk(chunkID);
+
+        if (!Objects.equals(chunkData[1], uuid.toString())) { return false; }
         return true;
     }
 

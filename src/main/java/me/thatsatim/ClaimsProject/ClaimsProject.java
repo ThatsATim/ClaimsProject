@@ -1,6 +1,7 @@
 package me.thatsatim.ClaimsProject;
 
 import me.thatsatim.ClaimsProject.commands.ClaimChunkCommand;
+import me.thatsatim.ClaimsProject.commands.TransferChunkCommand;
 import me.thatsatim.ClaimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.ClaimsProject.database.ClaimsDatabase;
 import me.thatsatim.ClaimsProject.listeners.Block;
@@ -16,6 +17,7 @@ public final class ClaimsProject extends JavaPlugin {
         new ClaimChunkCommand(this);
         new UnclaimChunkCommand(this);
         new Block(this);
+        new TransferChunkCommand(this);
 
         // Create the database connection
         try {
