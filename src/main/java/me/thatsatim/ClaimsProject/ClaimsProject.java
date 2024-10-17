@@ -5,6 +5,7 @@ import me.thatsatim.ClaimsProject.commands.TransferChunkCommand;
 import me.thatsatim.ClaimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.ClaimsProject.database.ClaimsDatabase;
 import me.thatsatim.ClaimsProject.listeners.Block;
+import me.thatsatim.ClaimsProject.listeners.PlayerInteract;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,12 +15,18 @@ public final class ClaimsProject extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        // -- Register other classes
+        // Commands
         new ClaimChunkCommand(this);
         new UnclaimChunkCommand(this);
-        new Block(this);
         new TransferChunkCommand(this);
 
-        // Create the database connection
+        // Listeners
+        new Block(this);
+        new PlayerInteract(this);
+
+        // -- Create the database connection
         try {
             if (!getDataFolder().exists()) {
                 getDataFolder().mkdirs();
