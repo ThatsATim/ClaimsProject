@@ -7,7 +7,9 @@ import me.thatsatim.claimsProject.database.ClaimsDatabase;
 import me.thatsatim.claimsProject.listeners.ArmorStandManipulate;
 import me.thatsatim.claimsProject.listeners.Block;
 import me.thatsatim.claimsProject.listeners.PlayerHit;
+import me.thatsatim.claimsProject.listeners.PlayerInteract;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -27,6 +29,7 @@ public final class ClaimsProject extends JavaPlugin {
         new Block(this);
         new PlayerHit(this);
         new ArmorStandManipulate(this);
+        new PlayerInteract(this);
 
         // -- Create the database connection
         try {
