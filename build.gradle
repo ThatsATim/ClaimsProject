@@ -2,6 +2,10 @@ plugins {
     id 'java'
 }
 
+jar {
+    destinationDirectory.set(file("/home/tim/Documents/mcTestServer/plugins"))
+}
+
 group = 'me.thatsatim'
 version = '0.1-DEV'
 

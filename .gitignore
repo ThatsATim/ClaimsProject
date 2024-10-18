@@ -32,3 +32,4 @@ target
 # Gradle files
 .gradle/
 build/
+build.gradle

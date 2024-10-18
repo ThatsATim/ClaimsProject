@@ -1,10 +1,8 @@
 package me.thatsatim.claimsProject.listeners;
 
 import me.thatsatim.claimsProject.ClaimsProject;
-import me.thatsatim.claimsProject.database.ClaimsDatabase;
+import me.thatsatim.claimsProject.utils.permissionCheck;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -18,23 +16,14 @@ public class Block implements Listener {
 
     @EventHandler
     public void onBreakBlock(BlockBreakEvent event) {
-        boolean allowed = isAllowed(event.getBlock().getChunk(), event.getPlayer());
+        boolean allowed = permissionCheck.isAllowed((event.getBlock().getChunk()), event.getPlayer());
         if (!allowed) { event.setCancelled(true); }
     }
 
     @EventHandler
     public void onPlaceBlock(BlockPlaceEvent event) {
-        boolean allowed = isAllowed(event.getBlock().getChunk(), event.getPlayer());
+        boolean allowed = permissionCheck.isAllowed((event.getBlock().getChunk()), event.getPlayer());
         if (!allowed) { event.setCancelled(true); }
-    }
-
-    private boolean isAllowed(Chunk chunk, Player player) {
-        try {
-            return ClaimsDatabase.permissionInChunk(player, chunk);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
 }

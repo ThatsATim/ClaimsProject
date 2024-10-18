@@ -4,8 +4,9 @@ import me.thatsatim.claimsProject.commands.ClaimChunkCommand;
 import me.thatsatim.claimsProject.commands.TransferChunkCommand;
 import me.thatsatim.claimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.claimsProject.database.ClaimsDatabase;
+import me.thatsatim.claimsProject.listeners.ArmorStandManipulate;
 import me.thatsatim.claimsProject.listeners.Block;
-import me.thatsatim.claimsProject.listeners.PlayerInteract;
+import me.thatsatim.claimsProject.listeners.PlayerHit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,7 +25,8 @@ public final class ClaimsProject extends JavaPlugin {
 
         // Listeners
         new Block(this);
-        new PlayerInteract(this);
+        new PlayerHit(this);
+        new ArmorStandManipulate(this);
 
         // -- Create the database connection
         try {
