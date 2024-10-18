@@ -1,6 +1,6 @@
-package me.thatsatim.ClaimsProject.listeners;
+package me.thatsatim.claimsProject.listeners;
 
-import me.thatsatim.ClaimsProject.ClaimsProject;
+import me.thatsatim.claimsProject.ClaimsProject;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,12 +1,11 @@
-package me.thatsatim.ClaimsProject.commands;
+package me.thatsatim.claimsProject.commands;
 
-import me.thatsatim.ClaimsProject.ClaimsProject;
-import me.thatsatim.ClaimsProject.database.ClaimsDatabase;
+import me.thatsatim.claimsProject.ClaimsProject;
+import me.thatsatim.claimsProject.database.ClaimsDatabase;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 
@@ -16,7 +15,7 @@ public class UnclaimChunkCommand implements CommandExecutor {
         plugin.getCommand("unclaim").setExecutor(this);
     }
 
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] arguments) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments) {
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("Chunks can not be managed by the console");

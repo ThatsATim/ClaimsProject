@@ -1,6 +1,6 @@
 name: ClaimsProject
 version: '0.1-DEV'
-main: me.thatsatim.ClaimsProject.ClaimsProject
+main: me.thatsatim.claimsProject.ClaimsProject
 api-version: '1.21'
 commands:
   claim:

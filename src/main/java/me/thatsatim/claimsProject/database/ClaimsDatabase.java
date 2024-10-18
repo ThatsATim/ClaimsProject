@@ -1,6 +1,6 @@
-package me.thatsatim.ClaimsProject.database;
+package me.thatsatim.claimsProject.database;
 
-import me.thatsatim.ClaimsProject.ClaimsProject;
+import me.thatsatim.claimsProject.ClaimsProject;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 
