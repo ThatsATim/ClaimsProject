@@ -9,7 +9,6 @@ import me.thatsatim.claimsProject.listeners.Block;
 import me.thatsatim.claimsProject.listeners.PlayerHit;
 import me.thatsatim.claimsProject.listeners.PlayerInteract;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;

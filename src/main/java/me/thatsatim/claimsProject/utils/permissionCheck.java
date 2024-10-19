@@ -8,7 +8,8 @@ public class permissionCheck {
 
     public static boolean isAllowed(Chunk chunk, Player player) {
         try {
-            return ClaimsDatabase.permissionInChunk(player, chunk);
+            String chunkID = (chunk.getX()) + "," + (chunk.getZ());
+            return ClaimsDatabase.permissionInChunk(player, chunkID);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
