@@ -32,7 +32,6 @@ public class ClaimsDatabase {
         if (!(chunkData[0] == null)) return false;
 
         if (checkForExistingClaim(player)) {
-            Bukkit.broadcastMessage("Checking borders");
             String[] chunkIDs = {
                     chunk.getX() + 1 + "," + (chunk.getZ()),
                     chunk.getX() + "," + (chunk.getZ() + 1),
@@ -41,7 +40,6 @@ public class ClaimsDatabase {
             };
             boolean isOwner = false;
             for (String ID : chunkIDs) {
-                Bukkit.broadcastMessage(ID);
                 isOwner = ownsChunk(player, ID);
                 if (isOwner) break;
             }
