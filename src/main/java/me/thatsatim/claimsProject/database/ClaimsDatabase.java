@@ -6,6 +6,8 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -54,6 +56,7 @@ public class ClaimsDatabase {
             preparedStatement.executeUpdate();
             return true;
         }
+
     }
 
     public static boolean unClaimChunk(Player player, Chunk chunk) throws SQLException {
@@ -92,6 +95,19 @@ public class ClaimsDatabase {
             ResultSet resultSet = preparedStatement.executeQuery();
             return new String[]{resultSet.getString("chunkID"), resultSet.getString("owner")};
         }
+    }
+
+    private static ArrayList<String[]> getChunks(Player player) throws SQLException {
+        UUID uuid = player.getUniqueId();
+        ArrayList<String[]> chunkData = new ArrayList<String[]>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM claims WHERE owner = ? LIMIT 100")) {
+            preparedStatement.setString(1, String.valueOf(uuid));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                chunkData.add(new String[]{resultSet.getString("chunkID"), resultSet.getString("owner")});
+            }
+        }
+        return chunkData;
     }
 
     private static boolean ownsChunk(Player player, String chunkID) throws SQLException {
