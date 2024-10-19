@@ -1,6 +1,7 @@
 package me.thatsatim.claimsProject;
 
 import me.thatsatim.claimsProject.commands.ClaimChunkCommand;
+import me.thatsatim.claimsProject.commands.TeleportToChunk;
 import me.thatsatim.claimsProject.commands.TransferChunkCommand;
 import me.thatsatim.claimsProject.commands.UnclaimChunkCommand;
 import me.thatsatim.claimsProject.database.ClaimsDatabase;
@@ -23,6 +24,7 @@ public final class ClaimsProject extends JavaPlugin {
         new ClaimChunkCommand(this);
         new UnclaimChunkCommand(this);
         new TransferChunkCommand(this);
+        new TeleportToChunk(this);
 
         // Listeners
         new Block(this);

@@ -9,3 +9,5 @@ commands:
     description: unclaim a chunk
   transfer:
     description: transfer a claimed chunk
+  teleportToChunk:
+    description: ADMIN command to teleport to a certain chunk
